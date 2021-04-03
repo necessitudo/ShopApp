@@ -146,11 +146,9 @@ class Products with ChangeNotifier {
         'shop-app-840a1-default-rtdb.firebaseio.com', '/products/$id');
     final existingProductIndex = _items.indexWhere((prod) => prod.id == id);
     var existingProduct = _items[existingProductIndex];
-    final response = await http.delete(url);
-
     _items.removeAt(existingProductIndex);
     notifyListeners();
-
+    final response = await http.delete(url);
     if (response.statusCode >= 400) {
       _items.insert(existingProductIndex, existingProduct);
       notifyListeners();
