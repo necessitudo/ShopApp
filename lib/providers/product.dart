@@ -24,12 +24,12 @@ class Product with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> toggleFavoriteStatus() async {
+  Future<void> toggleFavoriteStatus(String authToken) async {
     final oldStatus = isFavorite;
     _setFavValue(!isFavorite);
 
-    final url = Uri.https(
-        'shop-app-840a1-default-rtdb.firebaseio.com', '/products/$id.json');
+    final url = Uri.https('shop-app-840a1-default-rtdb.firebaseio.com',
+        '/products/$id.json', {'auth': authToken});
 
     try {
       final response =
