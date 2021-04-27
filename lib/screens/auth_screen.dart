@@ -141,9 +141,6 @@ class _AuthCardState extends State<AuthCard> {
             .signup(_authData['email'], _authData['password']);
         // Sign user up
       }
-
-      Navigator.of(context)
-          .pushReplacementNamed(ProductsOverviewScreen.routeName);
     } on HttpException catch (error) {
       var errorMessage = 'Authentification failed.';
 
